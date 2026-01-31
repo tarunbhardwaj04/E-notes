@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: Layout(~{::title}, ~{::section})}">
+<head>
+    <title>Edit User | Admin</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3>Edit User Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/admin/updateUser}" method="post" th:object="${userData}">
+                            
+                            <input type="hidden" th:field="*{id}">
+
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" th:field="*{name}" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" th:field="*{email}" class="form-control" readonly>
+                                <small class="text-muted">Email cannot be changed.</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Role</label>
+                                <select th:field="*{role}" class="form-control">
+                                    <option value="ROLE_USER">User</option>
+                                    <option value="ROLE_ADMIN">Admin</option>
+                                </select>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-success w-100">Update User</button>
+                                <a href="/admin/dashboard" class="btn btn-secondary w-100 mt-2">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

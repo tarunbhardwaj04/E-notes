@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: Layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Enotes</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0"><i class="fa-solid fa-users-gear me-2"></i> Admin Dashboard - User Management</h4>
+                        <span class="badge bg-primary fs-6">Total Users: [[${userList.size()}]]</span>
+                    </div>
+                    <div class="card-body">
+                        
+                        <div th:if="${session.msg}" class="alert alert-success text-center py-2">
+                            [[${session.msg}]]
+                            <th:block th:text="${@sessionHandler.removeMessageFromSession()}"></th:block>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle">
+                                <thead class="table-light">
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Qualification</th>
+                                        <th>Role</th>
+                                        <th>Registered Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="u, c : ${userList}" class="text-center">
+                                        <td th:text="${c.count}">1</td>
+                                        <td class="fw-bold" th:text="${u.name}">Tarun Kumar</td>
+                                        <td th:text="${u.email}">tarun@gmail.com</td>
+                                        <td th:text="${u.gender}">Male</td>
+                                        <td th:text="${u.qualification}">BCA</td>
+                                        <td>
+                                            <span th:classappend="${u.role == 'ROLE_ADMIN' ? 'badge bg-danger' : 'badge bg-success'}" 
+                                                  th:text="${u.role}">
+                                            </span>
+                                        </td>
+                                        <td th:text="${u.registrationDate}">2026-01-08</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a th:href="@{'/admin/editUser/'+${u.id}}" class="btn btn-sm btn-outline-primary">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a th:href="@{'/admin/deleteUser/'+${u.id}}" 
+                                                   onclick="return confirm('Are you sure you want to delete this user?')"
+                                                   class="btn btn-sm btn-outline-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

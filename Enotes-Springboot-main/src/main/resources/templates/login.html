@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: Layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Enotes</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card shadow">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h3><i class="fa-solid fa-right-to-bracket"></i> Login</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div th:if="${param.error}" class="alert alert-danger py-2 text-center">
+                            <span th:if="${session.SPRING_SECURITY_LAST_EXCEPTION != null}" 
+                                  th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+                            </span>
+                            <span th:unless="${session.SPRING_SECURITY_LAST_EXCEPTION != null}">
+                                Invalid Email or Password.
+                            </span>
+                        </div>
+
+                        <div th:if="${param.logout}" class="alert alert-success py-2 text-center">
+                            Logout successfully.
+                        </div>
+
+                        <form th:action="@{/userLogin}" method="post">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Email Address</label>
+                                <input type="email" name="username" class="form-control" placeholder="Enter email" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+                            </div>
+
+                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                        </form>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <p class="mb-0">
+                            Don't have an account? 
+                            <a th:href="@{/register}" class="text-decoration-none">Register here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: Layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Home | Enotes</title>
+</head>
+<body>
+  <section>
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://th.bing.com/th/id/OIP.CsXdJ9fGsQeW7AraBk-01gHaD2?w=317&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-attachment: fixed !important;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .custom-hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            color: white;
+            padding: 60px 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 80px;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <div class="custom-hero text-center">
+                    <h1 class="display-4 fw-bold">Welcome to Enotes</h1>
+                    <p class="lead">Your ideas, organized and secure in the cloud.</p>
+                    <hr class="my-4" style="border-top: 1px solid rgba(255,255,255,0.3)">
+                    <p>Stop losing track of your thoughts. Enotes provides a seamless way to 
+                       create, manage, and access your personal notes from anywhere.
+                       <hr>
+                    <br> <b><i>Created by:</i></b> <br>Tarun Kumar Bhardwaj</p>
+                    <a class="btn btn-primary btn-lg mt-3 px-5" href="/register" role="button">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</body>
+</html>
